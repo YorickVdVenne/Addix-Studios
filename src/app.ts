@@ -3,7 +3,7 @@ import { BootScene } from "./scenes/boot-scene";
 import { StartScene } from "./scenes/start-scene";
 
 const config: GameConfig = {
-    width: 1600,
+    width: 1200,
     height: 800,
     parent: "game",
     resolution: window.devicePixelRatio,

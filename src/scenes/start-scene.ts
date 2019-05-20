@@ -14,6 +14,7 @@ export class StartScene extends Phaser.Scene {
 
     create(): void {
         this.add.image(0, 0, 'sky').setOrigin(0, 0);
-        this.add.text(400, 400, 'Unicorns & Needles', {fontFamily: 'Arial Black', fontSize: 70, color: '#2ac9be' }).setOrigin(0.5).setStroke('#7df2ea', 16);
+        this.add.text(600, 400, 'Unicorns & Needles', {fontFamily: 'Arial Black', fontSize: 70, color: '#2ac9be' }).setOrigin(0.5).setStroke('#7df2ea', 16);
+        this.add.text(600, 500, 'Drug fueled adventure', {fontFamily: 'Arial Black', fontSize: 35, color: '#2ac9be' }).setOrigin(0.5).setStroke('#7df2ea', 8);
     }
 }
