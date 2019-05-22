@@ -1,13 +1,15 @@
 import "phaser";
 import { BootScene } from "./scenes/boot-scene";
 import { StartScene } from "./scenes/start-scene";
+import { Level1 } from "./scenes/level1-scene";
+
 
 const config: GameConfig = {
     width: 1200,
     height: 800,
     parent: "game",
     resolution: window.devicePixelRatio,
-    scene: [BootScene, StartScene],
+    scene: [BootScene, StartScene, Level1],
     input: {
         keyboard: true
     },
