@@ -5,8 +5,8 @@ import { Level1 } from "./scenes/level1-scene";
 
 
 const config: GameConfig = {
-    width: 1200,
-    height: 800,
+    width: 1440,
+    height: 900,
     parent: "game",
     resolution: window.devicePixelRatio,
     scene: [BootScene, StartScene, Level1],

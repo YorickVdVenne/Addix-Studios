@@ -10,7 +10,7 @@ export class BootScene extends Phaser.Scene {
     }
 
     preload(): void {
-        this.load.image('beginscreen', require('../assets/start-background.jpg'))
+        this.load.image('beginscreen', require('../assets/start-background-RESIZE.png'))
         this.load.image('syringe', require('../assets/syringe.png'))
         this.load.image('background1', require('../assets/level-background-1.png'))
 
