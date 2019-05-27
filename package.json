@@ -12,10 +12,10 @@
   "keywords": [
     "phaser3"
   ],
-  "author": "ADDIX Studios",
+  "author": "HR-CMGT",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^11.13.11",
+    "@types/node": "^11.13.8",
     "@types/webpack-env": "^1.13.9",
     "colors.css": "^3.0.0",
     "phaser": "^3.16.2",

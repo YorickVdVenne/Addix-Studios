@@ -1,15 +1,16 @@
 import "phaser";
-import { BootScene } from "./scenes/boot-scene";
-import { StartScene } from "./scenes/start-scene";
-import { Level1 } from "./scenes/level1-scene";
-
+import { BootScene } from "./scenes/boot-scene"
+import { StartScene } from "./scenes/start-scene"
+import { GameScene } from "./scenes/game-scene"
+import { GameScene2 } from "./scenes/game-scene.2"
+import { EndScene } from "./scenes/end-scene"
 
 const config: GameConfig = {
     width: 1440,
     height: 900,
     parent: "game",
     resolution: window.devicePixelRatio,
-    scene: [BootScene, StartScene, Level1],
+    scene: [BootScene, StartScene, GameScene, GameScene2, EndScene],
     input: {
         keyboard: true
     },
@@ -30,3 +31,4 @@ export class Game extends Phaser.Game {
 }
 
 window.addEventListener("load", () => new Game(config))
+
