@@ -1,6 +1,8 @@
 export class Player extends Phaser.Physics.Arcade.Sprite {
 
     private cursors: Phaser.Input.Keyboard.CursorKeys
+    maxJumps: number = 2;
+    jumps: number = 0;
 
     constructor(scene) {
         super(scene, 100, 450, "bmo")
@@ -8,30 +10,18 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.cursors = this.scene.input.keyboard.createCursorKeys()
         
         this.scene.add.existing(this)
-         this.scene.physics.add.existing(this)
+        this.scene.physics.add.existing(this)
 
-         this.setCollideWorldBounds(true)
-         this.setBounce(0.2)
-         this.setDragX(600)
-         this.setDragY(250)
+        this.setCollideWorldBounds(true)
+        this.setDragY(250)
     }
 
     public update(): void {
         
-        if (this.cursors.left.isDown) {
-            this.setVelocityX(-200)
-            this.flipX = true
-        } else if (this.cursors.right.isDown) {
-            this.setVelocityX(200)
-            this.flipX = false
-        } 
-        
-
         // jump when the body is touching the floor
-    
-        let grounded = this.body.touching.down 
-        if (this.cursors.up.isDown && grounded) {
+        if (this.cursors.up.isDown && this.jumps < this.maxJumps) {
             this.setVelocityY(-400)
+            this.jumps++
         }
 
     }

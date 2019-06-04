@@ -30,5 +30,8 @@ export class Game extends Phaser.Game {
     }
 }
 
-window.addEventListener("load", () => new Game(config))
+window.addEventListener("load", () => startGame())
 
+function startGame() {
+    let game = new Game(config)    
+}
