@@ -6,6 +6,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     private joystick: Joystick
     private maxJumps: number = 2
     private jumps: number = 0
+    private grounded: boolean
 
     constructor(scene) {
         super(scene, 100, 450, "unicorn")
@@ -25,22 +26,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     public update(): void {
-        
-        if (this.cursors.left.isDown) {
-            this.setVelocityX(-200)
-            this.flipX = true
-        } else if (this.cursors.right.isDown) {
-            this.setVelocityX(200)
-            
-        }                                                                                                                                                                                                                                                                                   
-        
 
-        // jump when the body is touching the floor
-    
-        let grounded = this.body.touching.down 
-        if (this.cursors.up.isDown && grounded) {
-            this.setVelocityY(-400)
-        }
+        this.grounded = this.body.touching.down
 
         this.joystick.update()
         this.joystickInput()
@@ -50,8 +37,15 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
 
     private joystickInput():void {
-        this.setVelocityX(this.joystick.XAxis * 400)
-        this.setVelocityY(this.joystick.YAxis * 400)
+        if (this.joystick.YAxis == -1 && this.grounded) {
+            this.setVelocityY(-400)
+        }
+        if (this.joystick.XAxis == 1) {
+            this.setVelocityX(700)
+        }
+        if (this.joystick.XAxis == -1) {
+            this.setVelocityX(-200)
+        }
     }
 
     public keyController() {
@@ -59,18 +53,11 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             this.setVelocityX(-200)
             this.flipX = false
         } if (this.cursors.right.isDown) {
-            this.setVelocityX(200)
-            this.flipX = false
-        } if (this.cursors.up.isDown) {
-            this.setVelocityY(-200)
-            this.flipX = false
-        } if (this.cursors.down.isDown) {
-            this.setVelocityY(200)
+            this.setVelocityX(700)
             this.flipX = false
         }
-}
-
-
-
-
+        if (this.cursors.up.isDown && this.grounded) {
+            this.setVelocityY(-400)
+        }
+    }
 }

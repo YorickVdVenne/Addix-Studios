@@ -31,15 +31,8 @@ export class MovingPlatform extends Phaser.Physics.Arcade.Sprite {
 
     public update(): void {
         if (this.x < 0) {
-            this.addPlatform(150, this.startPositionX)
-
-            //move platform from active group to pool.
-            this.currentScene.platforms.remove(this)
-            this.currentScene.platformPool.add(this)
-            this.active = false;
-            this.visible = false;
-
-            
+            this.addPlatform(150, 1440)
+            this.switchToPool()
         }
     } 
 
@@ -59,5 +52,12 @@ export class MovingPlatform extends Phaser.Physics.Arcade.Sprite {
         else {
             this.currentScene.platforms.add(new MovingPlatform(this.currentScene, posX, this.startPositionY, platformWidth), true)
         }
+    }
+    
+    public switchToPool() : void {
+        this.currentScene.platforms.remove(this)
+            this.currentScene.platformPool.add(this)
+            this.active = false;
+            this.visible = false;
     }
 }

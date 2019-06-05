@@ -28,14 +28,6 @@ export class GameScene extends Phaser.Scene {
     create(): void {
         this.add.image(0, 0, 'level1background').setOrigin(0, 0)      
     
-        // 11 needles
-        this.stars = this.physics.add.group({
-            key: 'star',
-            repeat: 11,
-            setXY: { x: 12, y: 30, stepX: 125 },
-        })
-
-
         this.bombs = this.add.group()
         for(let i = 0; i < 0; i++){
             this.bombs.add(new Bomb(this, 20, 20), true)
@@ -55,6 +47,7 @@ export class GameScene extends Phaser.Scene {
         this.platforms.add(new MovingPlatform(this, 1640, 750, 150), true)
         this.platforms.add(new MovingPlatform(this, 1540, 750, 100), true)
         this.platforms.add(new MovingPlatform(this, 1940, 750, 200), true)
+        this.platforms.add(new MovingPlatform(this, 2100, 750, 250), true)
 
 
         //platform pool to grab platforms from.
@@ -79,14 +72,15 @@ export class GameScene extends Phaser.Scene {
         this.scene.start("EndScene")
     }
 
-    private collectStar(player : Player , star) : void {
+    //collect function EXAMPLE NOT ACTUAL CODE
+    /*private collectStar(player : Player , star) : void {
         this.stars.remove(star, true, true)
         this.score++
         console.log(this.score)
         if(this.score==12){
             this.scene.start('GameScene2')
         }
-    }
+    }*/
 
     update(){
         this.player.update()

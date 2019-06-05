@@ -24,7 +24,7 @@ export class Joystick {
      * Creates a joystick object for one player
      * @param numOfButtons The number of buttons needed by your game
      */
-    constructor(numOfButtons : number = 0) {
+    constructor(numOfButtons : number = 1) {
         this.numberOfBUttons = numOfButtons
        
         window.addEventListener("gamepadconnected", (e : Event) => this.onGamePadConnected(e as GamepadEvent))
