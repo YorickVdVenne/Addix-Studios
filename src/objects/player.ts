@@ -4,8 +4,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     private cursors: Phaser.Input.Keyboard.CursorKeys
     private joystick: Joystick
-    private maxJumps: number = 2
-    private jumps: number = 0
 
     constructor(scene) {
         super(scene, 100, 450, "unicorn")
@@ -17,11 +15,10 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.scene.physics.add.existing(this)
         this.joystick = new Joystick(6)
 
-         this.setCollideWorldBounds(true)
-         this.setDragX(600)
-         this.setDragY(10)
-         this.setGravity(0)
-         this.setFriction(0)
+        this.setCollideWorldBounds(true)
+        this.setBounce(0.2)
+        this.setDragX(600)
+        this.setDragY(250) 
     }
 
     public update(): void {
@@ -32,7 +29,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         } else if (this.cursors.right.isDown) {
             this.setVelocityX(200)
             
-        }                                                                                                                                                                                                                                                                                   
+        } 
         
 
         // jump when the body is touching the floor
