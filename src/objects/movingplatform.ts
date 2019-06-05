@@ -1,33 +1,37 @@
+import { Scene } from "phaser";
+
 export class MovingPlatform extends Phaser.Physics.Arcade.Sprite {
 
-    private startPosition:number
+    private startPositionX: number
+    private startPositionY: number
+    private currentScene: Scene
 
-    constructor(scene, x: number, y: number, texture:string, friction:number = 1) {
+    constructor(scene, x: number, y: number, texture:string) {
         super(scene, x, y, texture)
 
         this.scene.physics.add.existing(this)
         
         let body = this.body as Phaser.Physics.Arcade.Body
         body.setAllowGravity(false)
-        this.setGravity(0) 
+        this.setGravity(0)
         this.setImmovable(true)
 
         // moving platform
-        this.setVelocityX(30)
+        this.setVelocityX(-500)
 
-        // friction 0 to 1 (ice has low friction) // no effect?
-        // this.setFrictionX(friction)
-
-        this.startPosition = x
+        this.startPositionX = x
+        this.startPositionY = y
+        this.currentScene = this.scene
     }
 
     public update(): void {
+        if (this.x < 0) {
+            this.newPlatform()
+            this.scene.platforms.remove(this)
+        }
+    }
 
-        if (this.x>= this.startPosition + 150) {
-            this.setVelocityX(-50)
-        }
-        else if (this.x <= this.startPosition - 150) {
-            this.setVelocityX(50)
-        }
+    public newPlatform(): void {
+        this.currentScene.platforms.add(new MovingPlatform(this.currentScene, this.startPositionX, this.startPositionY, "platform"), true)
     }
 }
