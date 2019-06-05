@@ -2,11 +2,14 @@ import { Player } from "../objects/player"
 import { Platform } from "../objects/platform"
 import { MovingPlatform } from "../objects/movingplatform"
 import { Bomb } from "../objects/bomb";
+import { Game } from "phaser";
+import { FirstPlatform } from "../objects/firstPlatform";
 
 export class GameScene extends Phaser.Scene {
 
     private player : Player
     private platforms: Phaser.GameObjects.Group
+    private platformPool: Phaser.GameObjects.Group
     private stars: Phaser.Physics.Arcade.Group
     private bombs: Phaser.GameObjects.Group
     private score= 0
@@ -18,15 +21,14 @@ export class GameScene extends Phaser.Scene {
     init(): void {
         console.log("Dit is de game scene")
         
-        this.physics.world.bounds.width = 1440
-        this.physics.world.bounds.height
-
+        this.physics.world.bounds.width = 1440;
+        this.physics.world.bounds.height = 900;
     }
 
     create(): void {
         this.add.image(0, 0, 'level1background').setOrigin(0, 0)      
     
-        // 11 STARS
+        // 11 needles
         this.stars = this.physics.add.group({
             key: 'star',
             repeat: 11,
@@ -40,16 +42,25 @@ export class GameScene extends Phaser.Scene {
         }
         
 
-        // TODO add player
+        //add player
         this.player = new Player(this)
 
+        //creating active platform group and adding platforms.
         this.platforms = this.add.group({ runChildUpdate: true })
         this.platforms.addMultiple([
             new Platform(this, 800, 840, "ground")
         ], true)
 
-        this.platforms.add(new MovingPlatform(this, 1440, 800, "platform"), true)
-        
+        this.platforms.add(new FirstPlatform(this, 1440, 750, 1440), true)
+        this.platforms.add(new MovingPlatform(this, 1640, 750, 150), true)
+        this.platforms.add(new MovingPlatform(this, 1540, 750, 100), true)
+        this.platforms.add(new MovingPlatform(this, 1940, 750, 200), true)
+
+
+        //platform pool to grab platforms from.
+        this.platformPool = this.add.group({ runChildUpdate: true})
+
+
         // define collisions for bouncing, and overlaps for pickups
         this.physics.add.collider(this.stars, this.platforms)
         this.physics.add.collider(this.player, this.platforms)
@@ -58,6 +69,7 @@ export class GameScene extends Phaser.Scene {
         this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this)
         this.physics.add.overlap(this.player, this.bombs, this.hitBomb, null, this)
 
+        //creating camera
         this.cameras.main.setSize(1440, 900)
         this.cameras.main.setBounds(0, 0, 1440, 900)
         this.cameras.main.startFollow(this.player)
