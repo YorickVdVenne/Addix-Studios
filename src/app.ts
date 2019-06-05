@@ -18,7 +18,7 @@ const config: GameConfig = {
         default: "arcade",
         arcade: {
             debug: false, 
-            gravity: { y: 800 }
+            gravity: { y: 400 }
         }
     },
     render: { pixelArt: true }

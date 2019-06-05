@@ -18,11 +18,10 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.scene.physics.add.existing(this)
         this.joystick = new Joystick(6)
 
-         this.setCollideWorldBounds(true)
-         this.setDragX(600)
-         this.setDragY(10)
-         this.setGravity(0)
-         this.setFriction(0)
+        this.setCollideWorldBounds(true)
+        this.setBounce(0.2)
+        this.setDragX(600)
+        this.setDragY(250) 
     }
 
     public update(): void {
