@@ -18,7 +18,7 @@ export class GameScene extends Phaser.Scene {
     init(): void {
         console.log("Dit is de game scene")
         
-        this.physics.world.bounds.width = 1600
+        this.physics.world.bounds.width = 1440
         this.physics.world.bounds.height
 
     }
@@ -48,7 +48,7 @@ export class GameScene extends Phaser.Scene {
             new Platform(this, 800, 840, "ground")
         ], true)
 
-        this.platforms.add(new MovingPlatform(this, 1440, 750, "platform"), true)
+        this.platforms.add(new MovingPlatform(this, 1440, 800, "platform"), true)
         
         // define collisions for bouncing, and overlaps for pickups
         this.physics.add.collider(this.stars, this.platforms)
@@ -59,7 +59,7 @@ export class GameScene extends Phaser.Scene {
         this.physics.add.overlap(this.player, this.bombs, this.hitBomb, null, this)
 
         this.cameras.main.setSize(1440, 900)
-        this.cameras.main.setBounds(0, 0, 1600, 600)
+        this.cameras.main.setBounds(0, 0, 1440, 900)
         this.cameras.main.startFollow(this.player)
     }
 

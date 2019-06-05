@@ -19,7 +19,7 @@ export class BootScene extends Phaser.Scene {
         this.load.image('startbackground', require('../assets/start-background-RESIZE.png'))
         this.load.image('level1background', require('../assets/level-background-1.png'))
         this.load.image('ground', require('../assets/black-platform.png'))
-          
+        this.load.image('unicorn', require('../assets/unicorn.png'))  
         
     
        
