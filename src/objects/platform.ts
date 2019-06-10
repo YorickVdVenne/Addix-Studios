@@ -6,7 +6,6 @@ export class Platform extends Phaser.Physics.Arcade.Sprite {
         let body = this.body as Phaser.Physics.Arcade.Body
         body.setAllowGravity(false)
         this.setGravity(0) 
-        this.setImmovable(false)
-        this.setVelocityX(-200)
+        this.setImmovable(true)
     }
 }

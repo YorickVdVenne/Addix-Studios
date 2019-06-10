@@ -1,33 +1,63 @@
+import { Scene } from "phaser";
+
 export class MovingPlatform extends Phaser.Physics.Arcade.Sprite {
 
-    private startPosition:number
+    private startPositionX: number
+    private startPositionY: number
+    private currentScene: Scene
+    private platform: MovingPlatform
 
-    constructor(scene, x: number, y: number, texture:string, friction:number = 1) {
-        super(scene, x, y, texture)
+    constructor(scene, posX: number, posY: number, platformWidth: number) {
+        super(scene, posX, posY, "platform")
 
+        //set width
+        this.width = platformWidth
+        this.displayWidth = platformWidth
+        
         this.scene.physics.add.existing(this)
         
         let body = this.body as Phaser.Physics.Arcade.Body
         body.setAllowGravity(false)
-        this.setGravity(0) 
+        this.setGravity(0)
         this.setImmovable(true)
 
         // moving platform
-        this.setVelocityX(30)
+        this.setVelocityX(-500)
 
-        // friction 0 to 1 (ice has low friction) // no effect?
-        // this.setFrictionX(friction)
-
-        this.startPosition = x
+        this.startPositionX = posX
+        this.startPositionY = posY
+        this.currentScene = this.scene
     }
 
     public update(): void {
+        if (this.x < 0) {
+            this.addPlatform(150, 1440)
+            this.switchToPool()
+        }
+    } 
 
-        if (this.x>= this.startPosition + 150) {
-            this.setVelocityX(-50)
+    public addPlatform(platformWidth: number, posX: number): void {
+        //if there are platforms in the pool:
+        if (this.currentScene.platformPool.getLength()){
+            //take the first platform from the pool.
+            this.platform = this.currentScene.platformPool.getFirst()
+            this.platform.x = posX
+            this.platform.active = true
+            this.platform.visible = true
+            //remove platform from the pool and add to active group.
+            this.currentScene.platformPool.remove(this.platform)
+            this.currentScene.platforms.add(this.platform)
         }
-        else if (this.x <= this.startPosition - 150) {
-            this.setVelocityX(50)
+        //if there are NO platforms in the pool create a new one.
+        else {
+            this.currentScene.platforms.add(new MovingPlatform(this.currentScene, posX, this.startPositionY, platformWidth), true)
         }
+    }
+    
+    public switchToPool() : void {
+        this.currentScene.platforms.remove(this)
+            this.currentScene.platformPool.add(this)
+            this.active = false;
+            this.visible = false;
     }
 }
