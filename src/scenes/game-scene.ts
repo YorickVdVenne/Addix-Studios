@@ -9,15 +9,20 @@ import { EndScene } from "./end-scene";
 
 export class GameScene extends Phaser.Scene {
 
+    //objects and groups
     private player : Player
     public platforms: Phaser.GameObjects.Group
-    public platformPool: Phaser.GameObjects.Group
+    public ground: Phaser.GameObjects.Group
     private syringes: Phaser.GameObjects.Group
     private bombs: Phaser.GameObjects.Group
 
     //ui
-    private score= 0
-    private timer: Phaser.Time.TimerEvent
+    //score
+    private scoreDisplay: Phaser.GameObjects.Text
+    private scoreTimer: Phaser.Time.TimerEvent
+
+    //timer
+    private gameTimer: Phaser.Time.TimerEvent
     private timerDisplay: Phaser.GameObjects.Text
     private timerCounter: number = 10
 
@@ -53,33 +58,53 @@ export class GameScene extends Phaser.Scene {
         this.platforms.add(new MovingPlatform(this, 1800, 750, 150), true)
         this.platforms.add(new MovingPlatform(this, 2100, 750, 300), true)
 
+        //group to check if player has fallen from the platforms
+        this.ground = this.add.group()
+        this.ground.addMultiple([
+            new Platform(this, 800, 840, "ground")
+        ], true)
+
         // define collisions for bouncing, and overlaps for pickups
         this.physics.add.collider(this.player, this.platforms)
         this.physics.add.collider(this.syringes, this.platforms)
         this.physics.add.overlap(this.player, this.syringes, this.collectSyringe, null, this)
+        this.physics.add.overlap(this.player, this.ground, this.outOfBounds, null, this)
 
         //creating camera
         this.cameras.main.setSize(1440, 900)
         this.cameras.main.setBounds(0, 0, 1440, 900)
         this.cameras.main.startFollow(this.player)
 
-        //creating timer for gameover
-        this.timerDisplay = this.add.text(700, 50, 'Score: 0', { fontFamily: 'Arial', fontSize: 11, color: '#ffffff' } ).setOrigin(0, 0)
-        this.timer = this.time.addEvent({
+        //creating gametimer
+        this.timerDisplay = this.add.text(100, 50, 'Time: ' + this.timerCounter, { fontFamily: 'Impact', fontSize: 24, color: '#ffffff' } ).setOrigin(0, 0)
+        this.gameTimer = this.time.addEvent({
             delay: 1000,    //ms
             callback: () => this.updateTimer(),
             loop: true
         })
+
+        //creating scorecounter
+        this.scoreDisplay = this.add.text(1300, 50, 'Score: 0', { fontFamily: 'Impact', fontSize: 24, color: '#ffffff' } ).setOrigin(0, 0)
+        this.scoreTimer = this.time.addEvent({
+            delay: 500,    //ms
+            callback: () => this.updateScore(),
+            loop: true
+        })
+        this.registry.set('score', 0)
     }
 
     update(){
-      this.player.update()
+        this.player.update()
 
-      //timer
-      this.timerDisplay.text = 'Time:' + this.timerCounter
-      if (this.timerCounter < 0){
-        this.scene.start("EndScene")
+        //timer update
+        this.timerDisplay.text = 'Time: ' + this.timerCounter
+        if (this.timerCounter < 0) {
+          this.scene.start("EndScene")
         }
+        
+        //score update
+        this.scoreDisplay.text = 'Score: ' + this.registry.get("score")
+
     }
 
     private addPlatform(){
@@ -98,5 +123,13 @@ export class GameScene extends Phaser.Scene {
 
     private updateTimer(){
         this.timerCounter--
+    }
+
+    private updateScore(){
+        this.registry.values.score++
+    }
+
+    private outOfBounds(){
+        this.scene.start("EndScene")
     }
 } 
