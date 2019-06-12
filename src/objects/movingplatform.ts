@@ -27,7 +27,7 @@ export class MovingPlatform extends Phaser.Physics.Arcade.Sprite {
     }
 
     public update(): void {
-        if (this.x < 0) {
+        if (this.x < 0 - this.width / 2) {
             this.remove()
         }
     }

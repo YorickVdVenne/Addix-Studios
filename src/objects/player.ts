@@ -37,10 +37,10 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     private joystickInput():void {
         if (this.joystick.YAxis == -1 && this.grounded) {
-            this.setVelocityY(-400)
+            this.setVelocityY(-600)
         }
         if (this.joystick.XAxis == 1) {
-            this.setVelocityX(700)
+            this.setVelocityX(200)
         }
         if (this.joystick.XAxis == -1) {
             this.setVelocityX(-200)
@@ -56,7 +56,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             this.flipX = false
         }
         if (this.cursors.up.isDown && this.grounded) {
-            this.setVelocityY(-400)
+            this.setVelocityY(-600)
         }
     }
 }
