@@ -19,9 +19,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.joystick = new Joystick(6)
 
         this.setCollideWorldBounds(true)
-        this.setBounce(0.2)
+        this.setBounce(0)
         this.setDragX(600)
-        this.setDragY(250) 
+        this.setDragY(50) 
     }
 
     public update(): void {
