@@ -50,9 +50,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     public keyController() {
         if (this.cursors.left.isDown) {
             this.setVelocityX(-200)
-            this.flipX = false
+            this.flipX = true
         } if (this.cursors.right.isDown) {
-            this.setVelocityX(700)
+            this.setVelocityX(200)
             this.flipX = false
         }
         if (this.cursors.up.isDown && this.grounded) {
