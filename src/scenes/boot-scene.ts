@@ -20,6 +20,9 @@ export class BootScene extends Phaser.Scene {
         this.load.image('level1background', require('../assets/level-background-1.png'))
         this.load.image('ground', require('../assets/black-platform.png'))
         this.load.image('unicorn', require('../assets/unicorn.png'))  
+        this.load.audio('backgroundmusic', require('../assets/backgroundmusic.mp3'))
+        this.load.audio('startbackgroundmusic', require('../assets/startbackgroundmusic.mp3'))
+        
         
     
 

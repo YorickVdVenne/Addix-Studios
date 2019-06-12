@@ -26,12 +26,6 @@ export class GameScene extends Phaser.Scene {
     create(): void {
         console.log("create function")
         this.add.image(0, 0, 'level1background').setOrigin(0, 0)      
-    
-        this.bombs = this.add.group()
-        for(let i = 0; i < 0; i++){
-            this.bombs.add(new Bomb(this, 20, 20), true)
-        }
-        
 
         //add player
         this.player = new Player(this)
