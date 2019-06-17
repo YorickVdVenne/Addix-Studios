@@ -1,6 +1,7 @@
 export class EndScene extends Phaser.Scene {
 
     private scoreDisplay: Phaser.GameObjects.Text
+    private backgroundmusic: Phaser.Sound.BaseSound
     private startbackgroundmusic: Phaser.Sound.BaseSound
 
     constructor() {
@@ -28,6 +29,14 @@ export class EndScene extends Phaser.Scene {
         btn1.on('pointerdown', (pointer) => {
             console.log("start button pressed");
             this.scene.start('GameScene')
+            this.sound.stopAll()
+            this.createMusic()
         })
     }
+
+    private createMusic() {
+        this.backgroundmusic = this.sound.add('backgroundmusic', { loop: true});
+        this.backgroundmusic.play()
+    }
+
 }
