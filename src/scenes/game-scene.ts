@@ -134,6 +134,7 @@ export class GameScene extends Phaser.Scene {
     }
 
     private outOfBounds(){
+        this.game.sound.stopAll()
         this.scene.start("EndScene")
     }
 
