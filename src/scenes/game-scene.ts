@@ -26,6 +26,10 @@ export class GameScene extends Phaser.Scene {
     private timerDisplay: Phaser.GameObjects.Text
     private timerCounter: number = 10
 
+    //speed
+    private speedTimer: Phaser.Time.TimerEvent
+    private speed = -500    //must be a negative number
+
     constructor() {
         super({ key: "GameScene" })
     }
@@ -49,14 +53,11 @@ export class GameScene extends Phaser.Scene {
 
         //creating active platform group and adding platforms.
         this.platforms = this.add.group({ runChildUpdate: true, removeCallback: () => this.addPlatform() })
-        this.platforms.addMultiple([
-            new Platform(this, 800, 840, "ground")
-        ], true)
 
-        this.platforms.add(new MovingPlatform(this, 770, 750, 1440), true)
-        this.platforms.add(new MovingPlatform(this, 1500, 750, 200), true)
-        this.platforms.add(new MovingPlatform(this, 1800, 750, 150), true)
-        this.platforms.add(new MovingPlatform(this, 2100, 750, 300), true)
+        this.platforms.add(new MovingPlatform(this, 770, 750, 1440, this.speed), true)
+        this.platforms.add(new MovingPlatform(this, 1500, 750, 200, this.speed), true)
+        this.platforms.add(new MovingPlatform(this, 1800, 750, 150, this.speed), true)
+        this.platforms.add(new MovingPlatform(this, 2100, 750, 300, this.speed), true)
 
         //group to check if player has fallen from the platforms
         this.ground = this.add.group()
@@ -91,6 +92,13 @@ export class GameScene extends Phaser.Scene {
             loop: true
         })
         this.registry.set('score', 0)
+
+        //speed timer
+        this.speedTimer = this.time.addEvent({
+            delay: 1000,    //ms
+            callback: () => this.updateSpeed(),
+            loop: true
+        })
     }
 
     update(){
@@ -110,7 +118,7 @@ export class GameScene extends Phaser.Scene {
     private addPlatform(){
         let x = 1440 + Math.floor(Math.random() * 750)
         let width = 100 + Math.floor(Math.random() * 400)
-        this.platforms.add(new MovingPlatform(this, x, 750, width), true)
+        this.platforms.add(new MovingPlatform(this, x, 750, width, this.speed), true)
         if (Math.floor(Math.random() * 100) < 25) {
             this.syringes.add(new Syringe(this, x, 700), true)
         }
@@ -131,5 +139,9 @@ export class GameScene extends Phaser.Scene {
 
     private outOfBounds(){
         this.scene.start("EndScene")
+    }
+
+    private updateSpeed(){
+        this.speed -= 10;
     }
 } 

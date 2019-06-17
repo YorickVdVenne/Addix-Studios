@@ -5,7 +5,7 @@ export class MovingPlatform extends Phaser.Physics.Arcade.Sprite {
 
     private gameScene: GameScene
 
-    constructor(scene, posX: number, posY: number, platformWidth: number) {
+    constructor(scene, posX: number, posY: number, platformWidth: number, speed) {
         super(scene, posX, posY, "platform")
 
         console.log("created platform")
@@ -20,7 +20,7 @@ export class MovingPlatform extends Phaser.Physics.Arcade.Sprite {
         body.setAllowGravity(false)
         this.setGravity(0)
         this.setImmovable(true)
-        this.setVelocityX(-500)
+        this.setVelocityX(speed)
 
         //set gameScene
         this.gameScene = this.scene as GameScene
