@@ -1,11 +1,7 @@
 import { Player } from "../objects/player"
 import { Platform } from "../objects/platform"
 import { MovingPlatform } from "../objects/movingplatform"
-import { Bomb } from "../objects/bomb";
-import { Game } from "phaser";
-import { FirstPlatform } from "../objects/firstPlatform";
 import { Syringe } from "../objects/syringe";
-import { EndScene } from "./end-scene";
 
 export class GameScene extends Phaser.Scene {
 
@@ -96,7 +92,7 @@ export class GameScene extends Phaser.Scene {
         //speed timer
         this.speedTimer = this.time.addEvent({
             delay: 1000,    //ms
-            callback: () => this.updateSpeed(),
+            callback: () => this.incrementSpeed(),
             loop: true
         })
     }
@@ -119,7 +115,7 @@ export class GameScene extends Phaser.Scene {
         let x = 1440 + Math.floor(Math.random() * 750)
         let width = 100 + Math.floor(Math.random() * 400)
         this.platforms.add(new MovingPlatform(this, x, 750, width, this.speed), true)
-        if (Math.floor(Math.random() * 100) < 25) {
+        if (Math.floor(Math.random() * 100) < 15) {
             this.syringes.add(new Syringe(this, x, 700), true)
         }
     }
@@ -141,7 +137,7 @@ export class GameScene extends Phaser.Scene {
         this.scene.start("EndScene")
     }
 
-    private updateSpeed(){
+    private incrementSpeed(){
         this.speed -= 10;
     }
 } 
