@@ -1,6 +1,7 @@
 export class EndScene extends Phaser.Scene {
 
     private scoreDisplay: Phaser.GameObjects.Text
+    private startbackgroundmusic: Phaser.Sound.BaseSound
 
     constructor() {
         super({key: "EndScene"})
@@ -14,16 +15,19 @@ export class EndScene extends Phaser.Scene {
 
     create(): void {
         // change this to a nice game over image
+        this.startbackgroundmusic = this.sound.add('startbackgroundmusic');
+        this,this.startbackgroundmusic.play()
 
         this.add.image(0, 0, 'endscene').setOrigin(0, 0)
         this.scoreDisplay = this.add.text(1075, 475, '', {fontFamily: 'arial', fontSize: 100, color: 'transparent'}).setOrigin(0.5).setStroke('#FFFFFF', 3)
 
         this.scoreDisplay.text = ' ' + this.registry.get("score")
 
-        // add text here
-
-        // this.add.text(400, 300, 'GAME OVER, MAN!', { fontFamily: 'Arial Black', fontSize: 70, color: '#2ac9be' }).setOrigin(0.5).setStroke('#7df2ea', 16)
-
-        // add code here to switch to the GameScene, after a mouse click
+        let btn1 = this.add.text(710, 800, 'TRY AGAIN!', {fontFamily: 'impact', fontSize: 60, color: '#FDFD06'}).setOrigin(0.5).setStroke('black', 5)
+        btn1.setInteractive({cursor:true})
+        btn1.on('pointerdown', (pointer) => {
+            console.log("start button pressed");
+            this.scene.start('GameScene')
+        })
     }
 }
