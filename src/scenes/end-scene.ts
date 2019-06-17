@@ -1,5 +1,7 @@
 export class EndScene extends Phaser.Scene {
 
+    private scoreDisplay: Phaser.GameObjects.Text
+
     constructor() {
         super({key: "EndScene"})
     }
@@ -14,6 +16,9 @@ export class EndScene extends Phaser.Scene {
         // change this to a nice game over image
 
         this.add.image(0, 0, 'endscene').setOrigin(0, 0)
+        this.scoreDisplay = this.add.text(1075, 475, '', {fontFamily: 'arial', fontSize: 100, color: 'transparent'}).setOrigin(0.5).setStroke('#FFFFFF', 3)
+
+        this.scoreDisplay.text = ' ' + this.registry.get("score")
 
         // add text here
 
