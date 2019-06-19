@@ -20,11 +20,11 @@ export class EndScene extends Phaser.Scene {
         this,this.startbackgroundmusic.play()
 
         this.add.image(0, 0, 'endscene').setOrigin(0, 0)
-        this.scoreDisplay = this.add.text(1075, 475, '', {fontFamily: 'arial', fontSize: 100, color: 'transparent'}).setOrigin(0.5).setStroke('#FFFFFF', 3)
+        this.scoreDisplay = this.add.text(1150, 520, '', {fontFamily: 'arial black', fontSize: 120, color: '#FFFFFF'}).setOrigin(0.5).setStroke('#FFFFFF', 1)
 
         this.scoreDisplay.text = ' ' + this.registry.get("score")
 
-        let btn1 = this.add.text(710, 800, 'TRY AGAIN!', {fontFamily: 'impact', fontSize: 60, color: '#FDFD06'}).setOrigin(0.5).setStroke('black', 5)
+        let btn1 = this.add.text(730, 320, 'TRY AGAIN!', {fontFamily: 'arial black', fontSize: 50, color: '#e5feff'}).setOrigin(0.5).setStroke('#1e1e1e', 10)
         btn1.setInteractive({cursor:true})
         btn1.on('pointerdown', (pointer) => {
             console.log("start button pressed");
