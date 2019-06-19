@@ -31,8 +31,9 @@ export class GameScene extends Phaser.Scene {
     }
 
     init(): void {
-        
-      
+        this.speed = -500
+        this.registry.values.score = 0
+        this.timerCounter = 10
     }
 
     create(): void {
