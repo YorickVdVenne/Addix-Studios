@@ -1,9 +1,6 @@
-import { Joystick } from "../utils/joystick"
-
 export class Player extends Phaser.Physics.Arcade.Sprite {
 
     private cursors: Phaser.Input.Keyboard.CursorKeys
-    private joystick: Joystick
     private maxJumps: number = 2
     private jumps: number = 0
     private grounded: boolean
@@ -16,7 +13,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         
         this.scene.add.existing(this)
         this.scene.physics.add.existing(this)
-        this.joystick = new Joystick(6)
 
         this.setCollideWorldBounds(true)
         this.setBounce(0)
@@ -28,23 +24,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.grounded = this.body.touching.down
 
-        this.joystick.update()
-        this.joystickInput()
         this.keyController()
 
-    }
-
-
-    private joystickInput():void {
-        if (this.joystick.YAxis == -1 && this.grounded) {
-            this.setVelocityY(-600)
-        }
-        if (this.joystick.XAxis == 1) {
-            this.setVelocityX(200)
-        }
-        if (this.joystick.XAxis == -1) {
-            this.setVelocityX(-200)
-        }
     }
 
     public keyController() {
@@ -56,6 +37,12 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             this.flipX = false
         }
         if (this.cursors.up.isDown && this.grounded) {
+            this.setVelocityY(-600)
+        }
+    }
+
+    private jump() {
+        if (this.grounded){
             this.setVelocityY(-600)
         }
     }

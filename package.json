@@ -17,6 +17,7 @@
   "dependencies": {
     "@types/node": "^11.13.8",
     "@types/webpack-env": "^1.13.9",
+    "arc": "^0.1.1",
     "colors.css": "^3.0.0",
     "phaser": "^3.16.2",
     "typescript": "^3.4.5"

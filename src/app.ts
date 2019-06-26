@@ -4,6 +4,7 @@ import { StartScene } from "./scenes/start-scene"
 import { GameScene } from "./scenes/game-scene"
 import { GameScene2 } from "./scenes/game-scene.2"
 import { EndScene } from "./scenes/end-scene"
+import { Arcade } from "./utils/arcade/arcade"
 
 const config: GameConfig = {
     width: 1440,
@@ -25,10 +26,13 @@ const config: GameConfig = {
 };
 
 export class Game extends Phaser.Game {
+
+    public arcade: Arcade
+
     constructor(config: GameConfig) {
         super(config)
+        this.arcade = new Arcade(this, false)
     }
 }
 
 window.addEventListener("load", () => new Game(config))
-
