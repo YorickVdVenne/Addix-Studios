@@ -59,7 +59,7 @@ export class Joystick {
             this.buttonEvents.push('joystick'+ this.JoystickNumber +'button' + (i))          
         }
         
-        //if (this.DEBUG) { this.debugPanel = new DebugPanel(this, this.numberOfBUttons) }
+        if (this.DEBUG) { this.debugPanel = new DebugPanel(this, this.numberOfBUttons) }
     }
 
     public update(): void {

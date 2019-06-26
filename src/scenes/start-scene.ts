@@ -6,15 +6,13 @@ export class StartScene extends Phaser.Scene {
     private backgroundmusic: Phaser.Sound.BaseSound
     private startbackgroundmusic: Phaser.Sound.BaseSound
     private arcade: Arcade
-    private g: Game
     private buttonListener: EventListener
 
 
     constructor() {
         super({key: "StartScene"})
 
-        this.g = this.game as Game
-        this.arcade = this.g.arcade
+       
     }
 
     init(): void {
@@ -25,6 +23,9 @@ export class StartScene extends Phaser.Scene {
     }
 
     create(): void {
+        let g = this.game as Game
+        this.arcade = g.arcade
+
         this.add.image(0, 0, 'startbackground').setOrigin(0, 0)
         this.startbackgroundmusic = this.sound.add('startbackgroundmusic');
         this,this.startbackgroundmusic.play()
@@ -36,7 +37,7 @@ export class StartScene extends Phaser.Scene {
 
         //change after gamepad buttonpress.
         this.buttonListener = () => this.nextScene()
-        document.addEventListener('joystick0button0', () => this.buttonListener)
+        document.addEventListener('joystick0button0', this.buttonListener)
         
     }
 
@@ -51,5 +52,11 @@ export class StartScene extends Phaser.Scene {
         this.createMusic()
         document.removeEventListener('joystick0button0', this.buttonListener)
         this.scene.start('GameScene')
+    }
+
+    update() : void {
+        for (const joystick of this.arcade.Joysticks) {
+            joystick.update()
+        }
     }
 }

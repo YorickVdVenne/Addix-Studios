@@ -41,20 +41,20 @@ export class GameScene extends Phaser.Scene {
         this.add.image(0, 0, 'level1background').setOrigin(0, 0)      
 
         //add player
-        this.player = new Player(this)
+        this.player = new Player(this, 100, 300)
 
         //group for syringes and adding syringes
         this.syringes = this.add.group()
 
-        this.syringes.add(new Syringe(this, 770, 200), true)
+        this.syringes.add(new Syringe(this, 770, 430), true)
 
         //creating active platform group and adding platforms.
         this.platforms = this.add.group({ runChildUpdate: true, removeCallback: () => this.addPlatform() })
 
-        this.platforms.add(new MovingPlatform(this, 770, 750, 1440, this.speed), true)
-        this.platforms.add(new MovingPlatform(this, 1500, 750, 200, this.speed), true)
-        this.platforms.add(new MovingPlatform(this, 1800, 750, 150, this.speed), true)
-        this.platforms.add(new MovingPlatform(this, 2100, 750, 300, this.speed), true)
+        this.platforms.add(new MovingPlatform(this, 770, 500, 1440, this.speed), true)
+        this.platforms.add(new MovingPlatform(this, 1500, 500, 200, this.speed), true)
+        this.platforms.add(new MovingPlatform(this, 1800, 500, 150, this.speed), true)
+        this.platforms.add(new MovingPlatform(this, 2300, 500, 300, this.speed), true)
 
         //group to check if player has fallen from the platforms
         this.ground = this.add.group()
@@ -114,10 +114,11 @@ export class GameScene extends Phaser.Scene {
 
     private addPlatform(){
         let x = 1440 + Math.floor(Math.random() * 750)
+        let y = 400 + Math.floor(Math.random() * 350)
         let width = 100 + Math.floor(Math.random() * 400)
-        this.platforms.add(new MovingPlatform(this, x, 750, width, this.speed), true)
+        this.platforms.add(new MovingPlatform(this, x, y, width, this.speed), true)
         if (Math.floor(Math.random() * 100) < 15) {
-            this.syringes.add(new Syringe(this, x, 700), true)
+            this.syringes.add(new Syringe(this, x, y - 70), true)
         }
     }
 
