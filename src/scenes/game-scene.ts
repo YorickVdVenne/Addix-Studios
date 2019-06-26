@@ -118,7 +118,7 @@ export class GameScene extends Phaser.Scene {
         let width = 100 + Math.floor(Math.random() * 400)
         this.platforms.add(new MovingPlatform(this, x, y, width, this.speed), true)
         if (Math.floor(Math.random() * 100) < 15) {
-            this.syringes.add(new Syringe(this, x, y - 70), true)
+            this.syringes.add(new Syringe(this, x, y - 70, this.speed), true)
         }
     }
 
