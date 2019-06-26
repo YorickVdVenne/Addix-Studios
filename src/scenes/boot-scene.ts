@@ -18,7 +18,7 @@ export class BootScene extends Phaser.Scene {
         //this.load.image('platform', require('../assets/platform_grass.png'))
         this.load.image('platform', require('../assets/platform_cloud.png'))
         this.load.image('startbackground', require('../assets/startscherm002.jpg'))
-        this.load.image('level1background', require('../assets/level-background-1.png'))
+        this.load.image('level1background', require('../assets/background_cloud.png'))
         this.load.image('ground', require('../assets/black-platform.png'))
         this.load.image('unicorn', require('../assets/unicorn.png'))  
         this.load.image('endscene', require('../assets/endscene.png'))  
