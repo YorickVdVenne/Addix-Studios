@@ -1,14 +1,19 @@
 # Unicorns & Needles
-Unicorns & Needles is een endless runner spel. De speler moet obstakels vermijden en naalden verzamelen om zijn high langer te laten duren. Hoe verder je komt hoe meer punten je krijgt. Voor bonus punten kun je eenhorns vangen.
+Unicorns & Needles is an endless runner game made as a schoolproject to be played on custommade arcademachine. The goal of the game is to survive as long as possible. You the player must jump form cloud to cloud and collect needles along the way to extend your game time. The longer you survive the higher your score will be!
 
-## Pullen met git
-Om de laatse versie van het spel te krijgen moet je pullen dit kan je doen door **git pull** uit te voeren in de terminal. Je moet wel in de map zijn waar het project staat.
+## Tasklist
+[x] Playermovement
+[x] Joystickfunctionalities
+[x] Endlessterrain
+[x] Syringes to gain extra playtime
+[x] score counter
+[ ] obstacles
+[ ] optimising platform spawning (maybe use premade sets?)
+[ ] dashing (to pass/destroy obstacles)
+[ ] score list to view highscores.
 
-## Pushen met git
-Om je eigen veranderingen in de repository te krijgen moet je de volgende workflow aanhouden.
-
-1. Maak je eigen veranderingen als deze eenmaal werken mag je pushen. **NIET WERKENDE CODE MAG JE NIET PUSHEN**
-1. voer **git status** uit om te zien welke bestanden je hebt veranderd.
-1. Met **git add -A** voeg je alle veranderde bestanden aan je commit toe, met **git add *bestandsnaam*** voeg je een specifiek bestand toe.
-1. Nu ga je een commit maken. Met **git commit -m "*message*"** maak je een commit aan. Tussen de aanhalingstekens vertel je kort wat je gedaan hebt.
-1. Als laatse gaan we pushen je gemaakte commit wordt doorgegeven aan de repository en de bestanden worden geupdate. Het commando hiervoor is  **git push**.
+## Contributors
+Thanks to
+@TortleTurtle programming the endless spawning of platforms, playermovement, syringe mechanic, scorecounter and fixing the bug where joystick buttons wouldn't respond.
+@Murtle for designing and making all the artwork and sprites.
+@YorickVdVenne for adding music, adding joystick movement and adding a start- and gameover screen.
