@@ -14,6 +14,6 @@ Unicorns & Needles is an endless runner game made as a schoolproject to be playe
 
 ## Contributors
 Thanks to
-@TortleTurtle programming the endless spawning of platforms, playermovement, syringe mechanic, scorecounter and fixing the bug where joystick buttons wouldn't respond.
-@Murtle for designing and making all the artwork and sprites.
-@YorickVdVenne for adding music, adding joystick movement and adding a start- and gameover screen.
+- [TortleTurtle](https://github.com/TortleTurtle) for programming the endless spawning of platforms, playermovement, syringe mechanic, scorecounter and fixing the bug where joystick buttons wouldn't respond.
+- [Murtle](https://github.com/myrtheveijk) for designing and making all the artwork and sprites.
+- [Yorick](https://github.com/yorickvdvenne) for adding music, adding joystick movement and adding a start- and gameover screen.
